@@ -1,5 +1,5 @@
 
-public class Items {
+public class Items { // создали класс с полями
 
     private String name;              // название
     private String productionDate;    // дата производства
@@ -8,7 +8,7 @@ public class Items {
     private double price;             // цена
     private boolean isReserved;       // резервация
 
-    public Items(String name, String productionDate, String manufacturer, String countryOfOrigin, double price, boolean isReserved) {
+    public Items(String name, String productionDate, String manufacturer, String countryOfOrigin, double price, boolean isReserved) {// констурктор
         this.name = name;
         this.productionDate = productionDate;
         this.manufacturer = manufacturer;
@@ -17,20 +17,12 @@ public class Items {
         this.isReserved = isReserved;
     }
 
-    public void info() {
+    public void info() { // метод для вывода информации по товарам построчно
         System.out.println("Название: " + name);
         System.out.println("Дата производства: " + productionDate);
         System.out.println("Производитель: " + manufacturer);
         System.out.println("Страна: " + countryOrigin);
         System.out.println("Цена: " + price + " руб.");
-        System.out.println("Забронирован: " + (isReserved ? "Да" : "Нет"));
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Задание 1");
-        Items item1 = new Items("Телевизор", "10.12.2025", "Samsung", "Китай", 85000.00, false);
-        Items item2 = new Items("Холодильник", "25.05.2015", "Indesit", "Польша", 217000.00, true);
-        item1.info();
-        item2.info();
+        System.out.println("Забронирован: " + (isReserved ? "Да" : "Нет"));// можно через if else
     }
 }
