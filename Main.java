@@ -57,7 +57,7 @@ public class Main {
             }
         }
 
-        System.out.println("\n=== все ли котики сыты ===\n");
+        System.out.println("\n--- все ли котики сыты ---\n");
 
         for (Cat cat : cats) {
             cat.showSatiety();
