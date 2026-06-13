@@ -6,5 +6,6 @@ public class Dog extends Animal {
         this.limitRun = 500;
         this.limitSwim = 10;
         this.canSwim = true;
+        dogCount++;// счетчик собак
     }
 }
