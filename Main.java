@@ -30,7 +30,7 @@ public class Main {
             for (int j = 0; j < 4; j++) {
                 System.out.print(array[i][j] + " ");// вывод каждой строки массива
             }
-            System.out.println();// первод строки массива на другую новую строчку
+            System.out.println();// перевод строки массива на другую новую строчку
         }
 
         int sum = 0;
@@ -39,7 +39,7 @@ public class Main {
             for (int j = 0; j < 4; j++) {
                 try {
                     int number = Integer.parseInt(array[i][j]); // метод преобразует строку в число
-                    sum += number;// прибпвка каждого элемента к общей сумму
+                    sum += number;// прибавка каждого элемента к общей сумму
 
                 } catch (NumberFormatException e) {//поймать ошибку если формат не числовой
                     throw new MyArrayDataException("Элемент массива -" + array[i][j] + " в ячейке[" + i + "][" + j + "]имеет не числовой формат");
