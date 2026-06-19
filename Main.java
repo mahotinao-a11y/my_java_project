@@ -27,7 +27,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String[][] wrongArray = new String[3][4]; // создаем новый неправльный массив, где количесвто строк 3 , а не 4
+        String[][] wrongArray = new String[4][1]; // создаем новый неправльный массив, где количесвто столбцов array[i] 1 , а не 4
         createArray(wrongArray);
     }
 }
