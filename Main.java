@@ -27,7 +27,13 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        String[][] wrongArray = new String[4][1]; // создаем новый неправльный массив, где количесвто столбцов array[i] 1 , а не 4
-        createArray(wrongArray);
+        String[][] rightArray = new String[4][4];//массив правильной длины
+        char letter = 'A'; //задаем начальный элемент массива
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                rightArray[i][j] = String.valueOf(letter++); // увеличение длины массива на 1 с кадждым проходом по циклам и перевод массива в строку
+            }
+        }
+        createArray(rightArray);
     }
 }
