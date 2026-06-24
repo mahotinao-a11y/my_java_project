@@ -56,7 +56,9 @@ public class Student {
     public static void main(String[] args) {
         // Создаем студента
         Student s1 = new Student("Анна", 101, 2);
-        Student s2 = new Student("Анна", 102, 4);
+        Student s2 = new Student("Арина", 102, 4);
+        Student s3 = new Student("Мирон", 101, 3);
+        Student s4 = new Student("Руслан", 105, 1);
 
         // Добавляем оценки
         Map<String, Integer> marks1 = new HashMap<>();
@@ -73,7 +75,23 @@ public class Student {
         s2.addMarks(marks2);
         System.out.println(s2);
         System.out.println("Средний балл: " + s2.getAverageMark());
+        Map<String, Integer> marks3 = new HashMap<>();
+        marks3.put("Математика", 5);
+        marks3.put("Физика", 5);
+        marks3.put("Программирование", 5);
+        s3.addMarks(marks3);
+        System.out.println(s3);
+        System.out.println("Средний балл: " + s3.getAverageMark());
+        Map<String, Integer> marks4 = new HashMap<>();
+        marks4.put("Математика", 2);
+        marks4.put("Физика", 2);
+        marks4.put("Программирование", 2);
+        s4.addMarks(marks4);
+        System.out.println(s4);
+        System.out.println("Средний балл: " + s4.getAverageMark());
         s1.promoteToNextCourse();
         s2.promoteToNextCourse();
+        s3.promoteToNextCourse();
+        s4.promoteToNextCourse();
     }
 }
