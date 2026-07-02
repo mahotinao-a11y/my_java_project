@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96220bb2-8cb8-4a85-a7fc-fce0d6cde0a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/EchoApiPostTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Post2Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/EchoApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/EchoApiGETTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/org/example/EchoApiTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/EchoApiGETTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/EchoApiGETTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/Post2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/Post2Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,8 +95,8 @@
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.PutTest">
-    <configuration name="EchoApiPOST1Test.whenSendPostFormRequest_thenStatus200" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EchoApiGETTest.testGetRequest">
+    <configuration name="EchoApiGETTest.testGetRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="my_java_project" />
       <extension name="coverage">
         <pattern>
@@ -109,8 +105,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.EchoApiPOST1Test" />
-      <option name="METHOD_NAME" value="whenSendPostFormRequest_thenStatus200" />
+      <option name="MAIN_CLASS_NAME" value="org.example.EchoApiGETTest" />
+      <option name="METHOD_NAME" value="testGetRequest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -191,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.EchoApiGETTest.testGetRequest" />
         <item itemvalue="JUnit.PutTest" />
         <item itemvalue="JUnit.Post2Test.whenSendPostRequest_thenStatus200" />
         <item itemvalue="JUnit.Post2Test.whenSendPostFormRequest_thenStatus200" />
         <item itemvalue="JUnit.Post2Test" />
-        <item itemvalue="JUnit.EchoApiPOST1Test.whenSendPostFormRequest_thenStatus200" />
       </list>
     </recent_temporary>
   </component>

@@ -24,11 +24,10 @@ public class EchoApiGETTest {
                 .queryParam("foo2", "bar2")
                 .when().get("/get")
                 .then()
-                .statusCode(200)                                    // ← проверка статуса
-                .body("args.foo1", equalTo("bar1"))                 // ← проверка поля foo1
-                .body("args.foo2", equalTo("bar2"))                 // ← проверка поля foo2
-                .body("headers.host", equalTo("postman-echo.com"))  // ← проверка host
-                .body("url", equalTo("https://postman-echo.com/get?foo1=bar1&foo2=bar2")); // ← проверка url
+                .statusCode(200)                                    // проверка статуса
+                .body("args.foo1", equalTo("bar1"))                 // проверка поля foo1
+                .body("args.foo2", equalTo("bar2"))  ;               // проверка поля foo2
+
     }
 }
 

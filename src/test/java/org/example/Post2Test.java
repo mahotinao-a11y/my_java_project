@@ -29,8 +29,8 @@ public class Post2Test {
                 .log().all()
                 .statusCode(200)
                 // Проверяем data как объект (Map)
-                .body("data.foo1", equalTo("bar1"))   // ✅ data.foo1 = "bar1"
-                .body("data.foo2", equalTo("bar2"))   // ✅ data.foo2 = "bar2"
+                .body("data.foo1", equalTo("bar1"))
+                .body("data.foo2", equalTo("bar2"))   //
                 .body("url", containsString("postman-echo.com/post"));
     }
 }
