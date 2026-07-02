@@ -1,18 +1,14 @@
 package org.example;
 
 import io.restassured.RestAssured;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.Matchers.equalTo;
 
-import java.util.Map;
-
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.*;
 
-public class EchoApiTest {
+public class EchoApiGETTest {
 
     @BeforeAll  // один раз для всех тестов вывод url
     static void setup() {
@@ -26,8 +22,7 @@ public class EchoApiTest {
         given()
                 .queryParam("foo1", "bar1")
                 .queryParam("foo2", "bar2")
-                .when()
-                .get("/get")
+                .when().get("/get")
                 .then()
                 .statusCode(200)                                    // ← проверка статуса
                 .body("args.foo1", equalTo("bar1"))                 // ← проверка поля foo1

@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96220bb2-8cb8-4a85-a7fc-fce0d6cde0a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/EchoApiPostTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/org/example/Post2Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/EchoApiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/EchoApiGETTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/org/example/EchoApiTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,8 +56,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.EchoApiGETTest.executor": "Run",
+    "JUnit.EchoApiGETTest.testGetRequest.executor": "Run",
+    "JUnit.EchoApiPOST1Test.whenSendPostFormRequest_thenStatus200.executor": "Run",
+    "JUnit.EchoApiPost1Test.executor": "Run",
+    "JUnit.EchoApiPostFormTest.whenSendPostFormRequest_thenStatus200.executor": "Run",
+    "JUnit.EchoApiPostTest.executor": "Run",
+    "JUnit.EchoApiPostTest.whenSendPostRequest_thenStatus200.executor": "Run",
     "JUnit.EchoApiTest.executor": "Run",
     "JUnit.EchoApiTest.testGetRequest.executor": "Run",
+    "JUnit.Post2Test.executor": "Run",
+    "JUnit.Post2Test.whenSendPostFormRequest_thenStatus200.executor": "Run",
+    "JUnit.Post2Test.whenSendPostRequest_thenStatus200.executor": "Run",
+    "JUnit.PutTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
@@ -87,8 +99,8 @@
     "settings.editor.selected.configurable": "project.propVCSSupport.Mappings"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.EchoApiTest">
-    <configuration name="EchoApiTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.PutTest">
+    <configuration name="EchoApiPOST1Test.whenSendPostFormRequest_thenStatus200" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="my_java_project" />
       <extension name="coverage">
         <pattern>
@@ -97,13 +109,29 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.EchoApiTest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.EchoApiPOST1Test" />
+      <option name="METHOD_NAME" value="whenSendPostFormRequest_thenStatus200" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Post2Test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Post2Test" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="EchoApiTest.testGetRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="Post2Test.whenSendPostFormRequest_thenStatus200" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="my_java_project" />
       <extension name="coverage">
         <pattern>
@@ -112,9 +140,40 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.EchoApiTest" />
-      <option name="METHOD_NAME" value="testGetRequest" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Post2Test" />
+      <option name="METHOD_NAME" value="whenSendPostFormRequest_thenStatus200" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Post2Test.whenSendPostRequest_thenStatus200" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.Post2Test" />
+      <option name="METHOD_NAME" value="whenSendPostRequest_thenStatus200" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PutTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example" />
+      <option name="MAIN_CLASS_NAME" value="org.example.PutTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -130,65 +189,13 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-    <configuration name="CalculatorTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="untitled" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.CalculatorTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CalculatorTest.testDivideByZero" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="untitled" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.CalculatorTest" />
-      <option name="METHOD_NAME" value="testDivideByZero" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TriangleAreaTest" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="untitled" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example" />
-      <option name="MAIN_CLASS_NAME" value="org.example.TriangleAreaTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.EchoApiTest" />
-        <item itemvalue="JUnit.EchoApiTest.testGetRequest" />
-        <item itemvalue="TestNG.CalculatorTest" />
-        <item itemvalue="TestNG.CalculatorTest.testDivideByZero" />
-        <item itemvalue="TestNG.TriangleAreaTest (1)" />
+        <item itemvalue="JUnit.PutTest" />
+        <item itemvalue="JUnit.Post2Test.whenSendPostRequest_thenStatus200" />
+        <item itemvalue="JUnit.Post2Test.whenSendPostFormRequest_thenStatus200" />
+        <item itemvalue="JUnit.Post2Test" />
+        <item itemvalue="JUnit.EchoApiPOST1Test.whenSendPostFormRequest_thenStatus200" />
       </list>
     </recent_temporary>
   </component>
