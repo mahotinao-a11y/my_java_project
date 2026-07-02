@@ -12,7 +12,7 @@ public class EchoApiGETTest {
 
     @BeforeAll  // один раз для всех тестов вывод url
     static void setup() {
-        RestAssured.baseURI = "https://postman-echo.com"; // базовый url,далее в тестах сожно писать get
+        RestAssured.baseURI = "https://postman-echo.com"; // базовый url,далее в тестах можно писать get
     }
 
     @Test
