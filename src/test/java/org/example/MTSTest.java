@@ -1,6 +1,7 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MTSTest {
-    private WebDriver driver; // объявляем переменную driver, чтобы использовать ее далее
-    private WebDriverWait wait; // объявляем переменную для ожидания
+    private static WebDriver driver; // объявляем переменную driver, чтобы использовать ее далее
+    private static WebDriverWait wait; // объявляем переменную для ожидания
 
 
     @BeforeAll // запуск один раз перед выполнением всех тестов
@@ -26,30 +27,36 @@ public class MTSTest {
         WebDriverManager.chromedriver().setup();
 
     }
-
-    @BeforeEach // перед каждым тестом открывать драйвер
-    public void openDriver() {
-        driver = new ChromeDriver();
-        driver.get("https://www.mts.by/");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        closeCookieBanner();
+    @BeforeEach
+    public void openDriver() { // открывает браузер для каждого теста
+        driver = new ChromeDriver(); // нового объекта драйвера
+        driver.manage().window().maximize();  // разворачивает на весь экран
+        driver.get("https://www.mts.by/"); // переходим в браузер
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // ждем загрузку браузера
+        acceptCookieBanner(); // метод, который закртывает кукки по нажатию на кнопку "Принять"
+        System.out.println("Браузер открыт, куки приняты");
     }
 
-    @AfterEach // после каждого теста закрытие driver
+    @AfterEach  // закрывает браузер после каждого теста
     public void closeDriver() {
-        if (driver != null) {  // проверка , что driver  вообще создался
-            driver.quit();   // закрытие всех окон
+        if (driver != null) {// проверка , что браузерне null
+            driver.quit(); // заурывает браузер
+            System.out.println("Браузер закрыт");
         }
     }
+    private static void acceptCookieBanner() { // метод для принятия кукки
+        try {// юлок если кукки присутствуют
+            WebElement acceptButton = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='cookie-agree']")));
+            acceptButton.click();  // кликаем на Принять
+            System.out.println("Куки-баннер принят");
 
-    private void closeCookieBanner() {
-        try {
-            WebElement closeButton = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    By.xpath("//div[contains(@class, 'cookie__wrapper')]//button")
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                    By.xpath("//div[contains(@class, 'cookie')]") // ожидание закрытия кукки
             ));
-            closeButton.click();
-        } catch (Exception e) {
-            System.out.println("⚠️ Куки-баннер не найден");
+            System.out.println("Куки-баннер исчез");
+        } catch (Exception e) { // блок если кукк нет
+            System.out.println("Куки-баннер не найден или уже принят");
         }
     }
 
@@ -136,6 +143,32 @@ public class MTSTest {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("body")));
 
+    }
+    @Test
+    @DisplayName("Заполнение полей и проверка кнопки «Продолжить» (Услуги связи)")
+    public void сontinueButton() {
+        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//div[@class='pay__wrapper']"))); // находим блок оплаты
+        WebElement servicesTab = block.findElement(By.xpath(".//span[contains(text(), 'Услуги связи')]"));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", servicesTab); // Приводит driver к типу JavascriptExecutor,JavaScript-код: берет первый переданный аргумент и кликает по нему,Передает servicesTab как первый аргумент в JavaScript
+        WebElement phoneInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//input[@placeholder='Номер телефона']"))); //Ждем, пока появится поле для ввода телефона
+        phoneInput.sendKeys("297777777"); // заполение поля телефона
+
+        WebElement sumInput = block.findElement(By.xpath("//input[@placeholder='Сумма']"));// ищем в блоке поле суммы
+        sumInput.sendKeys("10");// заполняем сумму
+
+        String expectedPhone = "297777777";
+        String actualPhone = phoneInput.getAttribute("value");
+        assertEquals(expectedPhone, actualPhone, "Номер телефона введен неверно");
+        String expectedSum = "10";
+        String actualSum = sumInput.getAttribute("value");
+        assertEquals(expectedSum, actualSum);
+
+        WebElement continueButton = wait.until(ExpectedConditions.elementToBeClickable(
+                By.xpath("//button[contains(text(), 'Продолжить')]"))); //Ждем, пока кнопка станет кликабельной, и нажимаем
+        continueButton.click();
+        wait.until(ExpectedConditions.urlContains("pay"));
     }
 
 }
