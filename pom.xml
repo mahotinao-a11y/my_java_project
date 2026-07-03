@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>my_java_project</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+<!-- Актуальные версии на момент ответа -->
+        <selenium.version>4.33.0</selenium.version>
+        <webdrivermanager.version>6.3.2</webdrivermanager.version>
+        <testng.version>7.11.0</testng.version>
+        <junit.version>5.13.4</junit.version>
+    </properties>
+
+   <dependencies>
+<!-- 1. Selenium WebDriver (основная библиотека) -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+<!-- 2. WebDriverManager (для автоматического управления драйверами) -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+<!-- 3. Тестовый фреймворк (на выбор) -->
+<!-- Вариант А: TestNG -->
+<!--
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+-->
+<!-- ИЛИ Вариант Б: JUnit 5 -->
+       <dependency>
+          <groupId>org.junit.jupiter</groupId>
+          <artifactId>junit-jupiter</artifactId>
+           <version>${junit.version}</version>
+           <scope>test</scope>
+       </dependency>
+
+   </dependencies>
+</project>

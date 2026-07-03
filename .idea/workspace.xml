@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c24f0eb8-ca7c-447d-ac5c-f35d08999190" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Lesson_8" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mahotinao-a11y/my_java_project.git",
+    "accountId": "fac3d021-6a62-4a84-a1e8-5f82b096c20d"
+  }
+}]]></component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.All in my_java_project.executor": "Run",
+    "JUnit.MTSTest.Icon.executor": "Run",
+    "JUnit.MTSTest.NameBlock.executor": "Run",
+    "JUnit.MTSTest.NameDriver.executor": "Run",
+    "JUnit.MTSTest.checklink.executor": "Run",
+    "JUnit.MTSTest.executor": "Run",
+    "JUnit.MTSTest.test1.executor": "Run",
+    "JUnit.MTSTest.testContinueButton.executor": "Run",
+    "TestNG.MTSTest.test1.executor": "Run",
+    "git-widget-placeholder": "Lesson__9",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "onboarding.tips.debug.path": "C:/Users/user/IdeaProjects/my_java_project/src/main/java/org/example/Main.java"
+  }
+}]]></component>
+  <component name="RunManager" selected="JUnit.MTSTest.checklink">
+    <configuration name="MTSTest.Icon" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="METHOD_NAME" value="Icon" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSTest.NameBlock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="METHOD_NAME" value="NameBlock" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSTest.NameDriver" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="METHOD_NAME" value="NameDriver" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSTest.checklink" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="METHOD_NAME" value="checklink" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MTSTest.testContinueButton" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="my_java_project" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MTSTest" />
+      <option name="METHOD_NAME" value="testContinueButton" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.MTSTest.checklink" />
+        <item itemvalue="JUnit.MTSTest.NameBlock" />
+        <item itemvalue="JUnit.MTSTest.testContinueButton" />
+        <item itemvalue="JUnit.MTSTest.Icon" />
+        <item itemvalue="JUnit.MTSTest.NameDriver" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/MTSTest.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
