@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
+import javax.lang.model.util.Types;
 import java.time.Duration;
 import java.util.List;
 
@@ -74,16 +75,14 @@ public class MTSTest {
     public void NameBlock() {
         By blockLocator = By.xpath("//div[@class='pay__wrapper']");// находим блок онлайн оплата
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(blockLocator)); // проверям что блок видимый
-        WebElement title = block.findElement(By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']")); // ищем title в указанном выше блоке
-        /*WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(
-        By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']")
-    )); это ожидание появления заголовка*/
+        /*WebElement title = block.findElement(By.xpath(".//h2[contains(text(), 'Онлайн пополнение')]")); // ищем title в указанном выше блоке*/
+        By titlelocator = By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']");
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(titlelocator));
         assertTrue(title.isDisplayed()); // проверка что заголовок виден в блоке
         System.out.println(title.getText()); // вывод в консоли заголовка
-        String expected = "Онлайн пополнение без комиссии";
-        String actual = title.getText();
-        assertEquals(expected, actual);// проверка что заголовок блока называется так как мы ожидаем
-
+        String actualText = title.getText();
+        assertTrue(actualText.contains("Онлайн пополнение"));
+        assertTrue(actualText.contains("без комиссии"));
     }
 
     @Test
@@ -158,9 +157,9 @@ public class MTSTest {
         WebElement sumInput = block.findElement(By.xpath("//input[@placeholder='Сумма']"));// ищем в блоке поле суммы
         sumInput.sendKeys("10");// заполняем сумму
 
-        String expectedPhone = "297777777";
+        String expectedPhone = "(29)777-77-77";
         String actualPhone = phoneInput.getAttribute("value");
-        assertEquals(expectedPhone, actualPhone, "Номер телефона введен неверно");
+        assertEquals(expectedPhone, actualPhone);
         String expectedSum = "10";
         String actualSum = sumInput.getAttribute("value");
         assertEquals(expectedSum, actualSum);

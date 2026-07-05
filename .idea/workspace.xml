@@ -52,7 +52,7 @@
     "onboarding.tips.debug.path": "C:/Users/user/IdeaProjects/my_java_project/src/main/java/org/example/Main.java"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.MTSTest.сontinueButton">
+  <component name="RunManager" selected="JUnit.MTSTest.NameBlock">
     <configuration name="MTSTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="my_java_project" />
       <option name="PACKAGE_NAME" value="" />
@@ -104,15 +104,26 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MTSTest.сontinueButton" />
-        <item itemvalue="JUnit.MTSTest.testContinueButton" />
         <item itemvalue="JUnit.MTSTest.NameBlock" />
-        <item itemvalue="JUnit.MTSTest" />
+        <item itemvalue="JUnit.MTSTest.сontinueButton" />
         <item itemvalue="JUnit.MTSTest.checklink" />
+        <item itemvalue="JUnit.MTSTest.testContinueButton" />
+        <item itemvalue="JUnit.MTSTest" />
       </list>
     </recent_temporary>
   </component>
   <component name="TaskManager">
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/org/example/MTSTest.java</url>
+          <line>83</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
