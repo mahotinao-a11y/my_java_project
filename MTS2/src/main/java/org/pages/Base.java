@@ -11,11 +11,11 @@ import java.time.Duration;
 
 import static java.awt.SystemColor.text;
 
-public class BasePage { // создаем класс с полями
+public class Base { // создаем класс с полями
     protected WebDriver driver;    // поле дврайвера
     protected WebDriverWait wait;  // поле ожидание для драйвера
 
-    public BasePage(WebDriver driver) { // констурктор
+    public Base(WebDriver driver) { // констурктор
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
