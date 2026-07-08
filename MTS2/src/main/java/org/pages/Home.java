@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.pages.Base;
 
+import java.util.List;
 
-public class Home extends BasePage {// локаторы, наследуемый класс от Base
+
+public class Home extends Base{// локаторы, наследуемый класс от Base
 
     private final By paymentBlock = By.xpath("//div[@class='pay__wrapper']"); // локаторы делаем неизменяемыми
     private final By blockTitle = By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']");
@@ -24,7 +26,7 @@ public class Home extends BasePage {// локаторы, наследуемый 
     ); // иконки платежных логотипов неизменяемые
 
 
-    public HomePage(WebDriver driver) { //конструктор super так как
+    public Home(WebDriver driver) { //конструктор super так как
         super(driver); // вызываем конструктор родителя Base page
     }
 
