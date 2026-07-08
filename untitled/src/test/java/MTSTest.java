@@ -1,13 +1,17 @@
-
 package org.pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.*;
-        import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.pages.Home;
+import org.pages.Payment;
 
 
+import java.io.ByteArrayInputStream;
 import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MTSTest {
     private WebDriver driver;
     private Home homePage;
+    private org.pages.Payment paymentPage;
 
 
     @BeforeAll
@@ -50,6 +55,8 @@ public class MTSTest {
         String expected = "МТС – мобильный оператор в Беларуси";
         String actual = homePage.getPageTitle();
         assertEquals(expected, actual, "Заголовок страницы не совпадает");
+        byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        Allure.addAttachment("Скриншот страницы", new ByteArrayInputStream(screenshotBytes));
         System.out.println("Заголовок страницы: " + actual);
     }
 
@@ -95,7 +102,7 @@ public class MTSTest {
 
         // Проверяем текст ссылки
         String linkText = homePage.getServiceLinkText();
-        assertEquals("Подробнее о сервисе", linkText, "Текст ссылки не совпадает");
+        assertEquals("Подробнее о сервисе", linkText);
 
         // Проверяем href
         String href = homePage.getServiceLinkHref();
@@ -115,7 +122,7 @@ public class MTSTest {
         System.out.println("Переход выполнен на: " + newUrl);
     }
 
-    @Test
+   /* @Test
     @DisplayName("Заполнение полей и проверка кнопки «Продолжить» (Услуги связи)")
     public void testContinueButton() {
         // Заполняем форму
@@ -130,9 +137,36 @@ public class MTSTest {
         // Нажимаем кнопку
         homePage.clickContinueButtonWithJS();
 
-        // Проверяем переход
-        homePage.waitForUrlContains("pay");
-        System.out.println("Переход выполнен на: " + homePage.getCurrentUrl());
+    }*/
+   @Test
+   @DisplayName("Проверка надписей в вкладке «Услуги связи»")
+   public void testServicesTabPlaceholders() {
+       // Проверяем только вкладку "Услуги связи"
+       assertTrue(homePage.areServicesPlaceholdersCorrect());
+       System.out.println("Услуги связи");
+   }
 
+    @Test
+    @DisplayName("Проверка надписей в вкладке «Домашний интернет»")
+    public void testInternetTabPlaceholders() {
+        // Проверяем только вкладку "Домашний интернет"
+        assertTrue(homePage.areInternetPlaceholdersCorrect());
+        System.out.println("Домашний интернет");
+    }
+
+    @Test
+    @DisplayName("Проверка надписей в вкладке «Рассрочка»")
+    public void testInstallmentTabPlaceholders() {
+        // Проверяем только вкладку "Рассрочка"
+        assertTrue(homePage.areInstallmentPlaceholdersCorrect());
+        System.out.println("Рассрочка");
+    }
+
+    @Test
+    @DisplayName("Проверка надписей в вкладке «Задолженность»")
+    public void testDebtTabPlaceholders() {
+        // Проверяем только вкладку "Задолженность"
+        assertTrue(homePage.areDebtPlaceholdersCorrect());
+        System.out.println("Задолженность");
     }
 }

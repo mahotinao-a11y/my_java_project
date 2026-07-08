@@ -1,6 +1,7 @@
 package org.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,30 +10,36 @@ import org.pages.Base;
 import java.util.List;
 
 
-public class Home extends Base{// локаторы, наследуемый класс от Base
+public class Home extends Base { // локаторы, наследуемый класс от Base
 
-    private final By paymentBlock = By.xpath("//div[@class='pay__wrapper']"); // локаторы делаем неизменяемыми
+    // Локаторы
+    private final By paymentBlock = By.xpath("//div[@class='pay__wrapper']");
     private final By blockTitle = By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']");
     private final By servicesTab = By.xpath(".//span[contains(text(), 'Услуги связи')]");
     private final By phoneInput = By.xpath("//input[@placeholder='Номер телефона']");
     private final By sumInput = By.xpath("//input[@placeholder='Сумма']");
     private final By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
-
-
-    private final By serviceLink = By.xpath(".//a[contains(text(), 'Подробнее о сервисе')]"); // локатор ссылки неизменяемый
-
+    private final By serviceLink = By.xpath(".//a[contains(text(), 'Подробнее о сервисе')]");
     private final By paymentIcons = By.xpath(
             ".//img[contains(@alt, 'MasterCard') or contains(@alt, 'Visa') or contains(@alt, 'Белкарт')]"
-    ); // иконки платежных логотипов неизменяемые
+    );
 
+    // добавленные локаторы
+    private final By internetTab = By.xpath(".//span[contains(text(), 'Домашний интернет')]");
+    private final By installmentTab = By.xpath(".//span[contains(text(), 'Рассрочка')]");
+    private final By debtTab = By.xpath(".//span[contains(text(), 'Задолженность')]");
 
-    public Home(WebDriver driver) { //конструктор super так как
-        super(driver); // вызываем конструктор родителя Base page
+    // локаторы для полей playsholder
+    private final By phonePlaceholder = By.xpath("//input[@placeholder='Номер телефона']");
+    private final By accountPlaceholder = By.xpath("//input[@placeholder='Лицевой счет']");
+    private final By contractPlaceholder = By.xpath("//input[@placeholder='Номер договора']");
+    private final By sumPlaceholder = By.xpath("//input[@placeholder='Сумма']");
+
+    public Home(WebDriver driver) {
+        super(driver);
     }
 
 
-
-    // Далее передем методы
     public String getBlockTitleText() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
         WebElement title = block.findElement(blockTitle);
@@ -50,7 +57,8 @@ public class Home extends Base{// локаторы, наследуемый кл�
         return titleText.contains(text);
     }
 
-    // Методы для иконок
+
+
     public List<WebElement> getPaymentIcons() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
         return block.findElements(paymentIcons);
@@ -70,7 +78,8 @@ public class Home extends Base{// локаторы, наследуемый кл�
         return !icons.isEmpty();
     }
 
-    // Методы для ссылки
+
+
     public void clickServiceLink() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
         WebElement link = block.findElement(serviceLink);
@@ -96,7 +105,8 @@ public class Home extends Base{// локаторы, наследуемый кл�
         return link.isDisplayed();
     }
 
-    //Методы для  заполнение полей оплаты
+
+
     public void selectServicesTab() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
         WebElement tab = block.findElement(servicesTab);
@@ -138,28 +148,25 @@ public class Home extends Base{// локаторы, наследуемый кл�
         button.click();
     }
 
+
+    private void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+    }
+
     public void clickContinueButtonWithJS() {
         WebElement button = wait.until(ExpectedConditions.presenceOfElementLocated(continueButton));
         scrollToElement(button);
         clickElementWithJS(button);
     }
 
-    private void scrollToElement(WebElement button) {
-    }
-
-    // Комплексный метод для проверки кнопки "Продолжить"
     public void fillFormAndContinue(String phone, String sum) {
         fillPaymentForm(phone, sum);
         clickContinueButtonWithJS();
         waitForUrlContains("pay");
     }
-
-    // Получение текущего URL
-    public String getCurrentUrl() {
-        return driver.getCurrentUrl();
+    public String getPageTitle() {
+        return driver.getTitle();
     }
-
-    // Проверка, что блок отображается
     public boolean isPaymentBlockDisplayed() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
@@ -168,8 +175,96 @@ public class Home extends Base{// локаторы, наследуемый кл�
             return false;
         }
     }
+    public String getCurrentUrl() {
+            return driver.getCurrentUrl();
+        }
 
-    public String getPageTitle() {
-        return driver.getTitle();
+
+
+
+
+    // Выбор вкладок
+    public void selectInternetTab() {
+        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
+        WebElement tab = block.findElement(internetTab);
+        clickElementWithJS(tab);
     }
+
+    public void selectInstallmentTab() {
+        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
+        WebElement tab = block.findElement(installmentTab);
+        clickElementWithJS(tab);
+    }
+
+    public void selectDebtTab() {
+        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
+        WebElement tab = block.findElement(debtTab);
+        clickElementWithJS(tab);
+    }
+
+    // Проверка placeholder для каждой вкладки
+    public boolean areServicesPlaceholdersCorrect() {
+        try {
+            WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(phonePlaceholder));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
+
+            String phonePlaceholderText = phone.getAttribute("placeholder");
+            String sumPlaceholderText = sum.getAttribute("placeholder");
+
+            return "Номер телефона".equals(phonePlaceholderText) &&
+                    "Сумма".equals(sumPlaceholderText);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean areInternetPlaceholdersCorrect() {
+        try {
+            selectInternetTab(); // Переключаемся на вкладку Интернет
+            WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(accountPlaceholder));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
+
+            String accountPlaceholderText = account.getAttribute("placeholder");
+            String sumPlaceholderText = sum.getAttribute("placeholder");
+
+            return "Лицевой счет".equals(accountPlaceholderText) &&
+                    "Сумма".equals(sumPlaceholderText);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean areInstallmentPlaceholdersCorrect() {
+        try {
+            selectInstallmentTab(); // Переключаемся на вкладку Рассрочка
+            WebElement contract = wait.until(ExpectedConditions.visibilityOfElementLocated(contractPlaceholder));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
+
+            String contractPlaceholderText = contract.getAttribute("placeholder");
+            String sumPlaceholderText = sum.getAttribute("placeholder");
+
+            return "Номер договора".equals(contractPlaceholderText) &&
+                    "Сумма".equals(sumPlaceholderText);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean areDebtPlaceholdersCorrect() {
+        try {
+            selectDebtTab(); // Переключаемся на вкладку Задолженность
+            WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(phonePlaceholder));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
+
+            String phonePlaceholderText = phone.getAttribute("placeholder");
+            String sumPlaceholderText = sum.getAttribute("placeholder");
+
+            return "Номер телефона".equals(phonePlaceholderText) &&
+                    "Сумма".equals(sumPlaceholderText);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
 }
