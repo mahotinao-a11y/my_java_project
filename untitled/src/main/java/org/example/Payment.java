@@ -21,10 +21,10 @@ public class Payment extends Base {
     private final By phoneNumber = By.xpath("//span[contains(@class, 'phone') or contains(@class, 'number')]");
 
     // Поля для ввода реквизитов карты
-    private final By cardNumberInput = By.xpath("//input[@placeholder='Номер карты']");
+    private final By cardNumberInput = By.xpath("//input[@id='cc-number']");
     private final By cardExpiryInput = By.xpath("//input[@placeholder='ММ/ГГ']");
-    private final By cardCvvInput = By.xpath("//input[@placeholder='CVV']");
-    private final By cardHolderInput = By.xpath("//input[@placeholder='Имя держателя']");
+    private final By cardCvvInput = By.xpath("//label[@class='ng-tns-c2312288139-5 ng-star-inserted']");
+    private final By cardHolderInput = By.xpath("//input[@autocomplete='cc-name']");
 
     // Иконки платежных систем на странице оплаты
     private final By paymentIcons = By.xpath("//div[contains(@class, 'payment') or contains(@class, 'icons')]//img");

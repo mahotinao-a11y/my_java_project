@@ -25,15 +25,19 @@ public class Home extends Base { // локаторы, наследуемый к�
     );
 
     // добавленные локаторы
-    private final By internetTab = By.xpath(".//span[contains(text(), 'Домашний интернет')]");
-    private final By installmentTab = By.xpath(".//span[contains(text(), 'Рассрочка')]");
-    private final By debtTab = By.xpath(".//span[contains(text(), 'Задолженность')]");
+    private final By internetTab = By.xpath("//span[@class='select__now']");
+    private final By installmentTab = By.xpath("//input[@data-mask='account-num-instalment']");
+    private final By debtTab = By.xpath(".//span[@class='select__now' and contains(text(), 'Задолженность')]");
 
     // локаторы для полей playsholder
     private final By phonePlaceholder = By.xpath("//input[@placeholder='Номер телефона']");
-    private final By accountPlaceholder = By.xpath("//input[@placeholder='Лицевой счет']");
-    private final By contractPlaceholder = By.xpath("//input[@placeholder='Номер договора']");
+    private final By internetPhoneInput = By.id("connection-phone");
+    private final By internetSumInput = By.id("connection-sum");
+    private final By contractPlaceholder = By.xpath("//input[@placeholder='Номер счета на 44']");
     private final By sumPlaceholder = By.xpath("//input[@placeholder='Сумма']");
+    private final By arrearsAccountInput = By.id("score-arrears");
+    private final By arrearsSumInput = By.id("arrears-sum");
+    private final By arrearsEmailInput = By.id("instalment-email");
 
     public Home(WebDriver driver) {
         super(driver);
@@ -216,52 +220,90 @@ public class Home extends Base { // локаторы, наследуемый к�
         }
     }
 
+
     public boolean areInternetPlaceholdersCorrect() {
         try {
             selectInternetTab(); // Переключаемся на вкладку Интернет
-            WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(accountPlaceholder));
-            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
 
-            String accountPlaceholderText = account.getAttribute("placeholder");
-            String sumPlaceholderText = sum.getAttribute("placeholder");
+            // ищем "Номер телефона"
+            WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//input[@placeholder='Номер телефона']")
+            ));
 
-            return "Лицевой счет".equals(accountPlaceholderText) &&
-                    "Сумма".equals(sumPlaceholderText);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean areInstallmentPlaceholdersCorrect() {
-        try {
-            selectInstallmentTab(); // Переключаемся на вкладку Рассрочка
-            WebElement contract = wait.until(ExpectedConditions.visibilityOfElementLocated(contractPlaceholder));
-            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
-
-            String contractPlaceholderText = contract.getAttribute("placeholder");
-            String sumPlaceholderText = sum.getAttribute("placeholder");
-
-            return "Номер договора".equals(contractPlaceholderText) &&
-                    "Сумма".equals(sumPlaceholderText);
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean areDebtPlaceholdersCorrect() {
-        try {
-            selectDebtTab(); // Переключаемся на вкладку Задолженность
-            WebElement phone = wait.until(ExpectedConditions.visibilityOfElementLocated(phonePlaceholder));
-            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumPlaceholder));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//input[@placeholder='Сумма']")
+            ));
 
             String phonePlaceholderText = phone.getAttribute("placeholder");
             String sumPlaceholderText = sum.getAttribute("placeholder");
 
+            System.out.println("Вкладка 'Домашний интернет'");
+            System.out.println("Поле 1: '" + phonePlaceholderText + "'");
+            System.out.println("Поле 2: '" + sumPlaceholderText + "'");
+
+            // Проверяем, что в поле 1 "Номер телефона"
             return "Номер телефона".equals(phonePlaceholderText) &&
                     "Сумма".equals(sumPlaceholderText);
         } catch (Exception e) {
+            System.out.println("Ошибка: " + e.getMessage());
             return false;
         }
+    }
+
+
+
+    public boolean areInstallmentPlaceholdersCorrect() {
+        try {
+            selectInstallmentTab();
+
+            System.out.println("Вкладка 'Рассрочка'");
+
+            WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.id("score-instalment")
+            ));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.id("instalment-sum")
+            ));
+
+            String accountText = account.getAttribute("placeholder");
+            String sumText = sum.getAttribute("placeholder");
+
+            System.out.println("Поле счета: '" + accountText + "'");
+            System.out.println("Поле суммы: '" + sumText + "'");
+
+            return "Номер счета на 44".equals(accountText) &&
+                    "Сумма".equals(sumText);
+        } catch (Exception e) {
+            System.out.println("Ошибка в 'Рассрочка': " + e.getMessage());
+            return false;
+        }
+    }
+    public boolean areDebtPlaceholdersCorrect() {
+            try {
+                selectDebtTab();
+
+                System.out.println("Вкладка 'Задолженность'");
+
+                WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.id("score-arrears")
+                ));
+                WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                        By.id("arrears-sum")
+                ));
+
+                String accountText = account.getAttribute("placeholder");
+                String sumText = sum.getAttribute("placeholder");
+
+                System.out.println("Поле счета: '" + accountText + "'");
+                System.out.println("Поле суммы: '" + sumText + "'");
+
+                return "Номер счета на 2073".equals(accountText) &&
+                        "Сумма".equals(sumText);
+            } catch (Exception e) {
+                System.out.println("Ошибка в 'Задолженность': " + e.getMessage());
+                return false;
+            }
+
     }
 
 
