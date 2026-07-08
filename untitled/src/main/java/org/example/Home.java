@@ -181,8 +181,6 @@ public class Home extends Base { // локаторы, наследуемый к�
 
 
 
-
-
     // Выбор вкладок
     public void selectInternetTab() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));

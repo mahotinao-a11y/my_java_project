@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Payment extends Base {
 
-    // === ЛОКАТОРЫ ДЛЯ СТРАНИЦЫ ОПЛАТЫ ===
+
 
     // Сумма на странице
     private final By sumOnPage = By.xpath("//span[contains(@class, 'total') or contains(@class, 'sum') or contains(@class, 'amount')]");

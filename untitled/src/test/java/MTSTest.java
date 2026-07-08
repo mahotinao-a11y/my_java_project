@@ -48,6 +48,15 @@ public class MTSTest {
             System.out.println("Браузер закрыт");
         }
     }
+    public void attachScreenshot(String name) {
+        try {
+            byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+            Allure.addAttachment(name, new ByteArrayInputStream(screenshotBytes));
+            System.out.println("Скриншот добавлен: " + name);
+        } catch (Exception e) {
+            System.out.println("Не удалось сделать скриншот: " + e.getMessage());
+        }
+    }
 
     @Test
     @DisplayName("Проверка названия браузера")
