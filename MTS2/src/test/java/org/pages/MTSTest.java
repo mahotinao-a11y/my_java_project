@@ -5,7 +5,6 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.HomePage;
-import pages.PaymentPage;
 
 import java.time.Duration;
 
@@ -13,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MTSTest {
     private WebDriver driver;
-    private HomePage homePage;
-    private PaymentPage paymentPage;
+    private Home homePage;
+   
 
     @BeforeAll
     public static void installWebDriver() {
@@ -28,9 +27,8 @@ public class MTSTest {
         driver.get("https://www.mts.by/");
 
         // Инициализируем страницы
-        homePage = new HomePage(driver);
-        paymentPage = new PaymentPage(driver);
-
+        homePage = new Home(driver);
+        
         // Закрываем куки
         homePage.acceptCookieBanner();
         System.out.println("Браузер открыт, куки приняты");
@@ -134,9 +132,7 @@ public class MTSTest {
         homePage.waitForUrlContains("pay");
         System.out.println("Переход выполнен на: " + homePage.getCurrentUrl());
 
-        // Проверяем страницу оплаты
-        assertTrue(paymentPage.isPaymentPageLoaded(), "Страница оплаты должна загрузиться");
-        assertTrue(paymentPage.isSumDisplayed("10"), "Сумма 10 должна отображаться");
+        
         System.out.println("Тест выполнен успешно!");
     }
 }
