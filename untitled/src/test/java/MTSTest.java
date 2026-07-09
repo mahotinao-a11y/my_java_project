@@ -3,13 +3,14 @@ package org.pages;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.pages.Home;
 import org.pages.Payment;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayInputStream;
 import java.time.Duration;
@@ -48,6 +49,7 @@ public class MTSTest {
             System.out.println("Браузер закрыт");
         }
     }
+
     public void attachScreenshot(String name) {
         try {
             byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -131,29 +133,29 @@ public class MTSTest {
         System.out.println("Переход выполнен на: " + newUrl);
     }
 
-   /* @Test
-    @DisplayName("Заполнение полей и проверка кнопки «Продолжить» (Услуги связи)")
-    public void testContinueButton() {
-        // Заполняем форму
-        homePage.fillPaymentForm("297777777", "10");
+    /* @Test
+     @DisplayName("Заполнение полей и проверка кнопки «Продолжить» (Услуги связи)")
+     public void testContinueButton() {
+         // Заполняем форму
+         homePage.fillPaymentForm("297777777", "10");
 
-        // Проверяем, что поля заполнились
-        String phoneValue = homePage.getPhoneValue();
-        String sumValue = homePage.getSumValue();
-        assertEquals("(29)777-77-77", phoneValue, "Номер телефона введен неверно");
-        assertEquals("10", sumValue, "Сумма введена неверно");
+         // Проверяем, что поля заполнились
+         String phoneValue = homePage.getPhoneValue();
+         String sumValue = homePage.getSumValue();
+         assertEquals("(29)777-77-77", phoneValue, "Номер телефона введен неверно");
+         assertEquals("10", sumValue, "Сумма введена неверно");
 
-        // Нажимаем кнопку
-        homePage.clickContinueButtonWithJS();
+         // Нажимаем кнопку
+         homePage.clickContinueButtonWithJS();
 
-    }*/
-   @Test
-   @DisplayName("Проверка надписей в вкладке «Услуги связи»")
-   public void testServicesTabPlaceholders() {
-       // Проверяем только вкладку "Услуги связи"
-       assertTrue(homePage.areServicesPlaceholdersCorrect());
-       System.out.println("Услуги связи");
-   }
+     }*/
+    @Test
+    @DisplayName("Проверка надписей в вкладке «Услуги связи»")
+    public void testServicesTabPlaceholders() {
+        // Проверяем только вкладку "Услуги связи"
+        assertTrue(homePage.areServicesPlaceholdersCorrect());
+        System.out.println("Услуги связи");
+    }
 
     @Test
     @DisplayName("Проверка надписей в вкладке «Домашний интернет»")
@@ -166,16 +168,33 @@ public class MTSTest {
     @Test
     @DisplayName("Проверка надписей в вкладке «Рассрочка»")
     public void testInstallmentTabPlaceholders() {
-        // Проверяем только вкладку "Рассрочка"
-        assertTrue(homePage.areInstallmentPlaceholdersCorrect());
-        System.out.println("Рассрочка");
+    // Проверяем плейсхолдер поля "Номер счета"
+    WebElement accountInput = driver.findElement(By.id("score-instalment"));
+    String actualAccountPlaceholder = accountInput.getAttribute("placeholder");
+
+    assertEquals("Номер счета на 44",actualAccountPlaceholder);
+
+    // 2. Проверяем плейсхолдер поля "Сумма"
+    WebElement sumInput = driver.findElement(By.id("instalment-sum"));
+    String actualSumPlaceholder = sumInput.getAttribute("placeholder");
+
+    assertEquals("Сумма",actualSumPlaceholder);
+
+    // 3. Проверяем плейсхолдер поля "E-mail"
+    WebElement emailInput = driver.findElement(By.id("instalment-email"));
+    String actualEmailPlaceholder = emailInput.getAttribute("placeholder");
+
+    assertEquals("E-mail для отправки чека",actualEmailPlaceholder);
     }
+
 
     @Test
     @DisplayName("Проверка надписей в вкладке «Задолженность»")
     public void testDebtTabPlaceholders() {
         // Проверяем только вкладку "Задолженность"
-        assertTrue(homePage.areDebtPlaceholdersCorrect());
-        System.out.println("Задолженность");
+        assertTrue(homePage.areDebtPlaceholdersCorrect(),
+                "Плейсхолдеры на вкладке 'Задолженность' не соответствуют ожидаемым (Номер счета на 2073 / Сумма)!");
+        System.out.println("Задолженность успешно проверена");
     }
+
 }

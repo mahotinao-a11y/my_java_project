@@ -41,8 +41,6 @@ public class Payment extends Base {
             return false;
         }
     }
-
-
     // Получить сумму на странице
     public String getSumOnPage() {
         WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(sumOnPage));
@@ -55,17 +53,6 @@ public class Payment extends Base {
         return sum.getText().trim();
     }
 
-
-    public boolean isSumOnPageCorrect(String expectedSum) {
-        String actualSum = getSumOnPage();
-        return actualSum.contains(expectedSum);  // Проверяем, что текст содержит нужную сумму
-    }
-
-    // Проверка суммы
-    public boolean isSumOnButtonCorrect(String expectedSum) {
-        String actualSum = getSumOnButton();
-        return actualSum.contains(expectedSum);  // Проверяем, что текст содержит нужную сумму
-    }
 
     // Получить номер телефона на странице
     public String getPhoneNumber() {

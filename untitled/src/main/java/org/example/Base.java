@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 import static java.awt.SystemColor.text;
 
 public class Base { // создаем класс с полями
@@ -64,12 +65,12 @@ public class Base { // создаем класс с полями
                     ExpectedConditions.elementToBeClickable(By.xpath("//button[@id='cookie-agree']"))
             );
             acceptButton.click();
-            System.out.println("🍪 Куки-баннер принят");
+            System.out.println("Куки-баннер принят");
             wait.until(ExpectedConditions.invisibilityOfElementLocated(
                     By.xpath("//div[contains(@class, 'cookie')]")
             ));
         } catch (Exception e) {
-            System.out.println("⚠️ Куки-баннер не найден или уже принят");
+            System.out.println("Куки-баннер не найден или уже принят");
         }
     }
 }

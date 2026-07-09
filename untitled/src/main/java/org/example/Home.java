@@ -17,8 +17,6 @@ public class Home extends Base { // локаторы, наследуемый к�
     private final By blockTitle = By.xpath(".//h2[normalize-space()='Онлайн пополнение без комиссии']");
     private final By servicesTab = By.xpath(".//span[contains(text(), 'Услуги связи')]");
     private final By phoneInput = By.xpath("//input[@placeholder='Номер телефона']");
-    private final By sumInput = By.xpath("//input[@placeholder='Сумма']");
-    private final By continueButton = By.xpath("//button[contains(text(), 'Продолжить')]");
     private final By serviceLink = By.xpath(".//a[contains(text(), 'Подробнее о сервисе')]");
     private final By paymentIcons = By.xpath(
             ".//img[contains(@alt, 'MasterCard') or contains(@alt, 'Visa') or contains(@alt, 'Белкарт')]"
@@ -27,17 +25,11 @@ public class Home extends Base { // локаторы, наследуемый к�
     // добавленные локаторы
     private final By internetTab = By.xpath("//span[@class='select__now']");
     private final By installmentTab = By.xpath("//input[@data-mask='account-num-instalment']");
-    private final By debtTab = By.xpath(".//span[@class='select__now' and contains(text(), 'Задолженность')]");
 
     // локаторы для полей playsholder
     private final By phonePlaceholder = By.xpath("//input[@placeholder='Номер телефона']");
-    private final By internetPhoneInput = By.id("connection-phone");
-    private final By internetSumInput = By.id("connection-sum");
-    private final By contractPlaceholder = By.xpath("//input[@placeholder='Номер счета на 44']");
     private final By sumPlaceholder = By.xpath("//input[@placeholder='Сумма']");
-    private final By arrearsAccountInput = By.id("score-arrears");
-    private final By arrearsSumInput = By.id("arrears-sum");
-    private final By arrearsEmailInput = By.id("instalment-email");
+
 
     public Home(WebDriver driver) {
         super(driver);
@@ -61,8 +53,6 @@ public class Home extends Base { // локаторы, наследуемый к�
         return titleText.contains(text);
     }
 
-
-
     public List<WebElement> getPaymentIcons() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
         return block.findElements(paymentIcons);
@@ -81,8 +71,6 @@ public class Home extends Base { // локаторы, наследуемый к�
         }
         return !icons.isEmpty();
     }
-
-
 
     public void clickServiceLink() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
@@ -110,64 +98,11 @@ public class Home extends Base { // локаторы, наследуемый к�
     }
 
 
-
-    public void selectServicesTab() {
-        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
-        WebElement tab = block.findElement(servicesTab);
-        clickElementWithJS(tab);
-    }
-
-    public void fillPhoneNumber(String phone) {
-        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(phoneInput));
-        input.clear();
-        input.sendKeys(phone);
-    }
-
-    public void fillSum(String sum) {
-        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
-        WebElement input = block.findElement(sumInput);
-        input.clear();
-        input.sendKeys(sum);
-    }
-
-    public void fillPaymentForm(String phone, String sum) {
-        selectServicesTab();
-        fillPhoneNumber(phone);
-        fillSum(sum);
-    }
-
-    public String getPhoneValue() {
-        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(phoneInput));
-        return input.getAttribute("value");
-    }
-
-    public String getSumValue() {
-        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
-        WebElement input = block.findElement(sumInput);
-        return input.getAttribute("value");
-    }
-
-    public void clickContinueButton() {
-        WebElement button = wait.until(ExpectedConditions.elementToBeClickable(continueButton));
-        button.click();
-    }
-
-
     private void scrollToElement(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
 
-    public void clickContinueButtonWithJS() {
-        WebElement button = wait.until(ExpectedConditions.presenceOfElementLocated(continueButton));
-        scrollToElement(button);
-        clickElementWithJS(button);
-    }
 
-    public void fillFormAndContinue(String phone, String sum) {
-        fillPaymentForm(phone, sum);
-        clickContinueButtonWithJS();
-        waitForUrlContains("pay");
-    }
     public String getPageTitle() {
         return driver.getTitle();
     }
@@ -183,8 +118,6 @@ public class Home extends Base { // локаторы, наследуемый к�
             return driver.getCurrentUrl();
         }
 
-
-
     // Выбор вкладок
     public void selectInternetTab() {
         WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
@@ -199,9 +132,25 @@ public class Home extends Base { // локаторы, наследуемый к�
     }
 
     public void selectDebtTab() {
-        WebElement block = wait.until(ExpectedConditions.visibilityOfElementLocated(paymentBlock));
-        WebElement tab = block.findElement(debtTab);
-        clickElementWithJS(tab);
+        // 1. Ищем элемент вкладки по улучшенному XPath, который учитывает возможные обертки
+        By debtTabLocator = By.xpath(
+                "//button[contains(., 'Задолженность')] | " +
+                        "//div[contains(@class, 'tab') and contains(., 'Задолженность')] | " +
+                        "//*[contains(text(), 'Задолженность')]"
+        );
+
+        // 2. Ждем, пока элемент станет полностью кликабельным
+        WebElement tab = wait.until(ExpectedConditions.elementToBeClickable(debtTabLocator));
+
+        // 3. Скроллим к нему по центру экрана
+        scrollToElement(tab);
+
+        // 4. Кликаем стандартным методом. Если не сработает, то JS-кликом ниже
+        try {
+            tab.click();
+        } catch (Exception e) {
+            clickElementWithJS(tab);
+        }
     }
 
     // Проверка placeholder для каждой вкладки
@@ -250,8 +199,6 @@ public class Home extends Base { // локаторы, наследуемый к�
         }
     }
 
-
-
     public boolean areInstallmentPlaceholdersCorrect() {
         try {
             selectInstallmentTab();
@@ -279,32 +226,29 @@ public class Home extends Base { // локаторы, наследуемый к�
         }
     }
     public boolean areDebtPlaceholdersCorrect() {
-            try {
-                selectDebtTab();
+        try {
+            selectDebtTab();
 
-                System.out.println("Вкладка 'Задолженность'");
+            System.out.println("Вкладка 'Задолженность'");
+            Thread.sleep(1000);
 
-                WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.id("score-arrears")
-                ));
-                WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(
-                        By.id("arrears-sum")
-                ));
+            // Ожидаем физического появления полей ввода на экране
+            WebElement account = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("score-arrears")));
+            WebElement sum = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("arrears-sum")));
 
-                String accountText = account.getAttribute("placeholder");
-                String sumText = sum.getAttribute("placeholder");
+            String accountText = account.getAttribute("placeholder");
+            String sumText = sum.getAttribute("placeholder");;
 
-                System.out.println("Поле счета: '" + accountText + "'");
-                System.out.println("Поле суммы: '" + sumText + "'");
+            System.out.println("Поле счета: '" + accountText + "'");
+            System.out.println("Поле суммы: '" + sumText + "'");
 
-                return "Номер счета на 2073".equals(accountText) &&
-                        "Сумма".equals(sumText);
-            } catch (Exception e) {
-                System.out.println("Ошибка в 'Задолженность': " + e.getMessage());
-                return false;
-            }
-
+            return "Номер счета на 2073".equals(accountText) && "Сумма".equals(sumText);
+        } catch (Exception e) {
+            System.out.println("Ошибка в 'Задолженность': " + e.getMessage());
+            return false;
+        }
     }
+
 
 
 }
